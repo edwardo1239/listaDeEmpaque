@@ -1,0 +1,89 @@
+<div id="modal_configuracion_naranja">
+    <header>
+        <h4>Configurar Pallet <span id="titulo_formulario_#pallet">#</span></h4>
+    </header>
+
+    <div>
+        <!-- <form onsubmit="guardarDatosFormularioPallet()" method="dialog" id="form_config_pallet"> -->
+            <div>
+                <div>
+                    <p>Tipo de caja</p>
+                    <label for="caja">B-A</label>
+                    <input type="radio" name="caja" id="B-AN">
+                    <label for="caja">V</label>
+                    <input type="radio" name="caja" id="VN">
+                    <label for="caja">N</label>
+                    <input type="radio" name="caja" id="NN">
+                </div>
+                <div>
+                    <P>Peso</P>
+                    <label for="peso">30</label>
+                    <input type="radio" name="peso" id="p30N">
+                    <label for="peso">37</label>
+                    <input type="radio" name="peso" id="p37N">
+                    <label for="peso">40</label>
+                    <input type="radio" name="peso" id="p40N">
+                </div>
+                <div>
+                    <p>Calidad</p>
+                    <label for="calidad">1</label>
+                    <input type="radio" name="calidad" id="c1N">
+                    <label for="calidad">1.5</label>
+                    <input type="radio" name="calidad" id="c15N">
+                    <label for="calidad">2</label>
+                    <input type="radio" name="calidad" id="c2N">
+                </div>
+                <div>
+                    
+                    <label for="calibre">Calibre</label>
+                    <input type="number" name="calibre" id="calibre_frutaN" min="0" step="0.1">
+                </select>
+                </div>
+
+                <button onclick="guardarDatosFormularioPalletNaranja()">Aplicar</button>
+                <button onclick="cerrarFormularioConfigPalletNaranja()">Cancelar</button>
+            </div>
+        
+
+
+        <!-- </form> -->
+    </div>
+</div>
+
+<script>
+
+    $("#modal_configuracion_naranja").hide();
+
+    //funcion llamada cuando se presiona el boton aplicar del formulario de configuracion de pallet
+    //esta funcion obtiene los datos de los botones tipo radius, luego los ingresa en el objeto loteActual
+    //tambien lo muestra en los datos del archivo informacion.html. Por ultimo esconde el formulario. 
+    function guardarDatosFormularioPalletNaranja(){
+        if($("#B-AN").is(':checked')) loteActual.caja = "B-A";
+        else if($("#VN").is(':checked')) loteActual.caja = "V";
+        else if($("#NN").is(':checked')) loteActual.caja = "N";
+
+        if($("#p30N").is(':checked')) loteActual.peso = 30;
+        else if($("#p37N").is(':checked')) loteActual.peso = 37;
+        else if($("#p40N").is(':checked')) loteActual.peso = 40;
+
+        if($("#c1N").is(':checked')) loteActual.calidad = 1;
+        else if($("#c15N").is(':checked')) loteActual.calidad = 1.5;
+        else if($("#c2N").is(':checked')) loteActual.calidad = 2;
+
+        loteActual.calibre = $("#calibre_frutaN").val();
+        console.log($("#calibre_fruta").val())
+
+        $("#caja_inf").html(loteActual.caja);
+        $("#peso_inf").html(loteActual.peso);
+        $("#calidad_inf").html(loteActual.calidad);
+        $("#calibre_inf").html(loteActual.calibre)
+
+        $("#modal_configuracion_naranja").hide(500,"swing");
+     
+        
+    }
+
+    function cerrarFormularioConfigPalletNaranja(){
+        $("#modal_configuracion_naranja").hide(500,"swing");
+    }
+</script>

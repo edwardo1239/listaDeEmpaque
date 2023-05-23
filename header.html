@@ -1,0 +1,93 @@
+<header class="header-main">
+    <img src="https://drive.google.com/uc?export=view&id=10Z3TNsyqn45mqsHe8Q25z17mwHg9qCiS" />
+
+    <div>
+        <label for="naranja">Naranja</label>
+        <input type="radio" name="fruta" id="naranja" value="Naranja">
+        <label for="limon">Limon</label>
+        <input type="radio" name="fruta" id="limon" value="Limon">
+    </div>
+
+    <div class="div-header-button">
+        <button class="obtener-lote" id="obtenerLote" onclick="obtenerLote()"><span class="span-obtener-lote"> Obtener Lote</span></button>
+        <select class="menu-contenedores" name="contenedores" id="contenedores">
+            <option value=""><b>Contenedores</b></option>
+    
+        </select>
+    </div>
+
+  
+</header>
+
+<script>
+
+    window.addEventListener("load", cargarContenedores);
+
+//cargar los datos y mostrarlo en el menu desplegable de la parte superior de la aplicacion, 
+//Estos datos se obtienen llamando a la funcion cargarContenedores de el documento listaDeEmpaqueJ.js
+//La primera funcion cargarContenedores, trae los datos y llama la funcion cargarDatosContenedores
+//que es la funcion encargada de mostrar los datos. 
+    function cargarContenedores() {
+        google.script.run.withSuccessHandler(function(dataContenedores){
+            cargarDatosContenedores(dataContenedores);
+            
+        }
+        ).cargarContenedores();
+    }
+
+
+    function cargarDatosContenedores(dataContenedores) {
+
+        let listaContenedor = document.getElementById("contenedores")
+        // let datos = dataContenedores.flat();
+        
+
+        dataContenedores.forEach(element => {
+
+
+            let option = document.createElement("option");
+            option.classList.add("opcionContenedor")
+            option.value = element[2];
+            option.text = element[0] + "-" + element[1];
+            listaContenedor.appendChild(option);
+        });
+    }
+
+//Evento al cambiar la opcion del menu desplegable
+    document.getElementById("contenedores").addEventListener('change', () =>{
+    let contenedor = document.getElementById("contenedores").value;
+    let nContenedor = document.getElementById("contenedores").textContent;
+    loteActual.idContenedor = contenedor;
+   
+    //contenedorActual = contenedor;
+    
+
+    
+    google.script.run.withSuccessHandler((cajasContenedor)=>{
+        crearTablaPalets(cajasContenedor);
+    }
+    ).abrirListaEmpaque(contenedor);
+});
+
+
+//Funcion que se usa para obtener el numero de lote y los datos correspondientes que se estan vaciando
+function obtenerLote(){
+    google.script.run.withSuccessHandler((nLote)=>{
+        let lote = nLote.flat();
+        loteActual.nombrePredio = lote[0];
+        loteActual.lote = lote[1];
+        loteActual.enf = lote[2];
+
+        document.getElementById("nLoteSeleccionado").innerHTML = loteActual.lote;
+        document.getElementById("nombrePredioSeleccionado").innerHTML = loteActual.nombrePredio;
+    }).obtenerLote();
+}
+
+//funcion que elimina y resetea el menu desplegable de los contenedores disponibles
+function eliminarOpcionContenedor(){
+    $(".opcionContenedor").remove();
+    $("#divPalet").remove();
+    cargarContenedores();
+
+}
+</script>

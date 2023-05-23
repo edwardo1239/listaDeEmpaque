@@ -1,0 +1,44 @@
+<div id="mainPalet"></div>
+
+<script>
+
+
+    function crearTablaPalets(contenedor) {
+        if ($("#divPalet")) $("#divPalet").remove();
+
+        let divPalets = document.createElement("div");
+        divPalets.id = "divPalet";
+        divPalets.classList.add("grid-div-pallets");
+        
+
+        for (let i = 1; i <= 20; i++) {
+            //crear el div
+            let divPallet = document.createElement("div");
+            divPallet.classList.add("div-pallet");
+            divPallet.id = "dic_pallet";
+            //se crean los botones que representan cada pallet
+            let boton_pallet = document.createElement("button");
+            boton_pallet.innerHTML = "Pallet" + i;
+            boton_pallet.onclick = () => seleccionarPalet(i);
+            //desactiva el boton si el pallet esta lleno
+            divPallet.appendChild(boton_pallet);
+            //se crean los textos que indican cuantas cajas lleva cada pallet
+            let nCajas = document.createElement("p");
+            nCajas.innerHTML = "Cajas = " + contenedor[i];
+            divPallet.appendChild(nCajas);
+            
+            divPalets.appendChild(divPallet)
+        }
+        
+        document.querySelector("#mainPalet").appendChild(divPalets);
+    }
+
+    function seleccionarPalet(numeroPalet) {
+        loteActual.pallet = numeroPalet;
+        console.log(loteActual)
+
+    }
+
+
+
+</script>

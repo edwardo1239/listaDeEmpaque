@@ -1,0 +1,24 @@
+<div>
+    <input type="number" id="numero_cajas" min="0">
+    <button onclick="sumarCaja('suma')">Añadir</button>
+    <button onclick="sumarCaja('resta')">Eliminar</button>
+    <button onclick="abrirFormularioPallet()">Configurar pallet</button>
+    <button onclick="terminarContenedor()">Finalizar contenedor</button>
+</div>
+
+<script>
+
+    function abrirFormularioPallet(){
+       if($("#limon").is(':checked')) $("#modal_configuracion_limon").show();
+       else if ($("#naranja").is(':checked')) $("#modal_configuracion_naranja").show();
+
+        $("#modal_configuracion").show(500, "swing");
+    }
+
+    function terminarContenedor(){
+        google.script.run.withSuccessHandler(
+            
+            eliminarOpcionContenedor()
+        ).terminarContenedor(loteActual);
+    }
+</script>

@@ -1,0 +1,48 @@
+<div>
+    <div>
+        <p>Datos seleccionados</p>
+        <p id="nLoteSeleccionado">asd</p>
+        <p id="nombrePredioSeleccionado">asd</p>
+        <p>Caja: <span id="caja_inf"></span></p>
+        <p>Peso: <span id="peso_inf"></span></p>
+        <p>Calidad: <span id="calidad_inf"></span></p>
+        <p>Calibre <span id="calibre_inf"></span></p>
+    </div>
+    
+    
+    <div id="informacionVaciadoActual">
+        <p id="nLoteProceso"></p>
+        <p id="nombreLoteProceso"></p>
+    </div>
+</div>
+
+
+<script>
+
+    
+
+
+
+//funcion que periodicamente obtiene datos de la base de datos de lotes, para obtener el lote que se esta vaciando 
+
+    window.addEventListener("load", imprimir);
+
+    async function imprimir(){
+    
+        let x = await setInterval(imprimir1,10000);
+       
+    }
+
+   function imprimir1(){
+
+    google.script.run.withSuccessHandler((nLote)=>{
+       
+        let lote = nLote.flat();
+        //console.log(lote)
+        document.getElementById("nLoteProceso").innerHTML = lote[1];
+        document.getElementById("nombreLoteProceso").innerHTML = lote[0];
+    }).obtenerLote();
+    
+   }
+    
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <base target="_top">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+    <?!= obtenerDatosHtml('js'); ?>
+    <?!= obtenerDatosHtml('css'); ?>
+</head>
+<body>
+    
+    <?!= obtenerDatosHtml('header'); ?>
+
+    <div class="container">
+        <?!= obtenerDatosHtml('pallets'); ?>
+        <?!= obtenerDatosHtml('informacion'); ?>
+        
+    </div>
+    <?!= obtenerDatosHtml('botones'); ?>
+
+
+    <?!= obtenerDatosHtml('footer'); ?>
+    <?!= obtenerDatosHtml('modalConfiguracionLimon'); ?>
+    <?!= obtenerDatosHtml('modalConfiguracionNaranja'); ?>
+    
+</body>
+</html>
