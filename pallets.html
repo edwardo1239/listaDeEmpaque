@@ -20,6 +20,10 @@
             let boton_pallet = document.createElement("button");
             boton_pallet.innerHTML = "Pallet" + i;
             boton_pallet.onclick = () => seleccionarPalet(i);
+            // añadir imagen al boton
+            // let imgBoton = document.createElement("img");
+            // imgBoton.src("https://drive.google.com/uc?export=view&id=1khA8Qg0j7fCGegiVma9Oe8nH07OjD0rl")
+            // boton_pallet.appendChild(imgBoton);
             //desactiva el boton si el pallet esta lleno
             divPallet.appendChild(boton_pallet);
             //se crean los textos que indican cuantas cajas lleva cada pallet

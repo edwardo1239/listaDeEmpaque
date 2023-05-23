@@ -21,4 +21,21 @@
             eliminarOpcionContenedor()
         ).terminarContenedor(loteActual);
     }
+
+    function sumarCaja(tipo_fruta){
+        loteActual.noCajas = $("#numero_cajas").val();
+        for(x in loteActual){
+            if(loteActual[x] == 0){
+                alert("Ingrese todos los datos correspondientes");
+                return 0;
+            }
+        }
+        
+        google.script.run.withSuccessHandler(
+            function(obj){
+                crearTablaPalets(obj);
+            }
+        ).sumCaja(loteActual, tipo_fruta);
+    }
+
 </script>
